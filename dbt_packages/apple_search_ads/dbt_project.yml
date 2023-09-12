@@ -1,0 +1,25 @@
+name: 'apple_search_ads'
+version: '0.2.2'
+config-version: 2
+require-dbt-version: [">=1.3.0", "<2.0.0"]
+vars:
+  apple_search_ads:
+    organization: "{{ ref('stg_apple_search_ads__organization') }}"
+    campaign_history: "{{ ref('stg_apple_search_ads__campaign_history') }}"
+    campaign_report: "{{ ref('stg_apple_search_ads__campaign_report') }}"
+    ad_group_history: "{{ ref('stg_apple_search_ads__ad_group_history') }}"
+    ad_group_report: "{{ ref('stg_apple_search_ads__ad_group_report') }}"
+    ad_history: "{{ ref('stg_apple_search_ads__ad_history') }}"
+    ad_report: "{{ ref('stg_apple_search_ads__ad_report') }}"
+    keyword_history: "{{ ref('stg_apple_search_ads__keyword_history') }}"
+    keyword_report: "{{ ref('stg_apple_search_ads__keyword_report') }}"
+    search_term_report: "{{ ref('stg_apple_search_ads__search_term_report') }}"
+  apple_search_ads__ad_group_passthrough_metrics: []
+  apple_search_ads__ad_passthrough_metrics: []
+  apple_search_ads__campaign_passthrough_metrics: []
+  apple_search_ads__keyword_passthrough_metrics: []
+  apple_search_ads__search_term_passthrough_metrics: []
+models:
+  apple_search_ads:
+    +schema: apple_search_ads
+    +materialized: table

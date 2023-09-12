@@ -1,0 +1,67 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'dbt_ads_test'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'dbt_ads_test'
+
+vars:
+      apple_search_ads_schema: drops_apple_search_ads_full
+      apple_search_ads_database: drops-bi
+      google_ads_schema: drops_google_ads_full
+      google_ads_database: drops-bi
+      # facebook_ads_schema: drops_facebook_ads
+      # facebook_ads_database: drops-bi
+      snapchat_ads_schema: drops_snapchat_ads_full
+      snapchat_ads_database: drops-bi
+      tiktok_ads_schema: drops_tiktok_ads_full
+      tiktok_ads_database: drops-bi
+      twitter_ads_schema: drops_twitter_ads_full
+      twitter_ads_database: drops-bi
+
+
+
+
+      ad_reporting__amazon_ads_enabled: False # by default this is assumed to be True
+      ad_reporting__apple_search_ads_enabled: True # by default this is assumed to be True
+      ad_reporting__pinterest_ads_enabled: False # by default this is assumed to be True
+      ad_reporting__microsoft_ads_enabled: False # by default this is assumed to be True
+      ad_reporting__linkedin_ads_enabled: False # by default this is assumed to be True
+      ad_reporting__google_ads_enabled: True # by default this is assumed to be True
+      ad_reporting__twitter_ads_enabled: True # by default this is assumed to be True
+      ad_reporting__facebook_ads_enabled: False # by default this is assumed to be True
+      ad_reporting__snapchat_ads_enabled: True # by default this is assumed to be True
+      ad_reporting__tiktok_ads_enabled: True # by default this is assumed to be True
+      ad_reporting__reddit_ads_enabled: False # by default this is assumed to be True
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+models:
+  dbt_ads_test:
+    # Config indicated by + and applies to all files under models/example/
+    example:
+      +materialized: view

@@ -1,0 +1,27 @@
+name: 'reddit_ads_source'
+version: '0.1.0'
+
+config-version: 2
+require-dbt-version: [">=1.3.0", "<2.0.0"]
+
+models:
+  reddit_ads_source:
+    +schema: reddit_ads_source
+    +materialized: table
+    tmp:
+      +materialized: view
+
+vars:
+  reddit_ads_source:
+    account: "{{ source('reddit_ads','account') }}"
+    account_report: "{{ source('reddit_ads', 'account_report') }}"
+    ad_group: "{{ source('reddit_ads','ad_group') }}"
+    ad_group_report: "{{ source('reddit_ads', 'ad_group_report') }}"
+    ad: "{{ source('reddit_ads','ad') }}"
+    ad_report: "{{ source('reddit_ads','ad_report') }}"
+    campaign: "{{ source('reddit_ads','campaign') }}"
+    campaign_report: "{{ source('reddit_ads', 'campaign_report') }}"
+  reddit_ads__account_passthrough_metrics: []
+  reddit_ads__ad_group_passthrough_metrics: []
+  reddit_ads__ad_passthrough_metrics: []
+  reddit_ads__campaign_passthrough_metrics: []
